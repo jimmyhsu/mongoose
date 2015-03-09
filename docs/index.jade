@@ -34,11 +34,11 @@ html(lang='en')
           var mongoose = require('mongoose');
           mongoose.connect('mongodb://localhost/test');
         :markdown
-          We have a pending connection to the test database running on localhost. We now need to get notified if we connect successfully or if a connection error occurs:
+          We have a pending connection to the test database running on localhost. We now need to get notified through [events](https://nodejs.org/api/events.html#events_class_events_eventemitter) if we connect successfully or if a connection error occurs:
         :js
           var db = mongoose.connection;
           db.on('error', console.error.bind(console, 'connection error:'));
-          db.once('open', function (callback) {
+          db.once('open', function () { // callback
             // yay!
           });
         :markdown
